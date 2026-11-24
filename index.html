@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Small tools for people who hand their repo to an AI agent</title>
+<style>
+  :root { --ink:#e8e6e3; --muted:#9a9691; --bg:#15161a; --card:#1d1f24; --line:#2c2f36; --accent:#a78bfa; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif; }
+  .wrap { max-width:760px; margin:0 auto; padding:64px 24px 96px; }
+  h1 { font-size:34px; line-height:1.25; margin:0 0 12px; letter-spacing:-.01em; }
+  .sub { color:var(--muted); font-size:18px; margin:0 0 48px; }
+  h2 { font-size:22px; margin:0 0 6px; }
+  .price { color:var(--accent); font-weight:600; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:26px 28px; margin:0 0 26px; }
+  .card p { margin:10px 0; }
+  ul { margin:10px 0 0; padding-left:20px; color:var(--muted); }
+  li { margin:6px 0; }
+  .buy { display:inline-block; margin-top:16px; padding:10px 20px; background:var(--accent); color:#15161a; font-weight:600; text-decoration:none; border-radius:8px; }
+  .note { color:var(--muted); font-size:14px; }
+  footer { margin-top:56px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+  code { background:#24262c; padding:1px 6px; border-radius:4px; font-size:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Small tools for people who hand their repository to an AI agent</h1>
+  <p class="sub">One finds credentials before the agent reads them. One rewrites Chinese text so it stops sounding machine-written. Both are SKILL.md packages, plain text and scripts, no installation.</p>
+
+  <div class="card">
+    <h2>Secret Hygiene Check <span class="price">$9</span></h2>
+    <p>Your agent was asked to fix a failing test. It read the traceback, then opened <code>.env</code> "to understand the config". Your Stripe and AWS keys are now in the model's context and in the chat log.</p>
+    <p>This runs before that. It walks the repository, finds likely credentials, and returns a report with file, line, and a masked fingerprint — never the value. The skill forbids the agent from opening the flagged file to double-check.</p>
+    <ul>
+      <li>Nine credential patterns: AWS, GitHub, Stripe live, Slack, Google, OpenAI, JWT, private-key blocks, generic assignments</li>
+      <li>Name-based check for <code>.env</code>, <code>.pem</code>, <code>.key</code>, <code>.git-credentials</code>, <code>.npmrc</code>, <code>.netrc</code>, <code>id_rsa</code></li>
+      <li>Python standard library only. No network, no writes, no dependencies</li>
+      <li>Tested on a real 335-file tree: zero false positives; on a planted tree: 5 of 5 caught</li>
+    </ul>
+    <p class="note">Free version available: finds the four patterns that cause the most damage, plus the files that leak most often.</p>
+    <a class="buy" href="#contact">Get it</a>
+  </div>
+
+  <div class="card">
+    <h2>Chinese AI-Flavor Remover <span class="price">$7</span></h2>
+    <p>English humanizers do not work on Chinese. The heaviest tells are not word choice — they are 公文体黑话, stacked four-character idioms, explicit 不是 A 而是 B contrast, and bold inline labels followed by colons.</p>
+    <p>The harder part runs the other way: human Chinese writing uses <em>more</em> superlatives and <em>more</em> vague hedges than AI does, because models avoid committing. A word blacklist makes it worse.</p>
+    <ul>
+      <li>Judgment rules instead of a ban list</li>
+      <li>Four-tier phrase table: delete outright, replace by context, Chinese-specific, hardest to spot</li>
+      <li>A reverse list of words you must not delete</li>
+      <li>Fifteen before/after rewrites</li>
+    </ul>
+    <p class="note">Free version: three deletion rules and one rewrite test.</p>
+    <a class="buy" href="#contact">Get it</a>
+  </div>
+
+  <div class="card" id="contact">
+    <h2>How to buy</h2>
+    <p>Checkout runs through Creem, which handles payment, tax and delivery. Links are being wired up right now.</p>
+    <p class="note">Meanwhile, write to <strong>zhangjunshang4925@foxmail.com</strong> and say which one you want. First ten buyers of either package get the paid version for the free-version price.</p>
+  </div>
+
+  <footer>
+    Built by one person. Scripts are plain text you can read before running. No telemetry, no accounts, nothing uploaded anywhere.
+  </footer>
+
+</div>
+</body>
+</html>
